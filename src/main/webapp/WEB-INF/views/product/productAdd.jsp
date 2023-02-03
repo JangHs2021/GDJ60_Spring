@@ -8,5 +8,16 @@
 </head>
 <body>
 	<h1>Product Add</h1>
+	<div class="col-6">
+		<form action="./productAdd" method="post">
+			상품명
+			<input type="text" placeholder="상품명을 입력하세요" name="productName" value=""> <br>
+			<hr>
+			상품정보 <br>
+			<textarea placeholder="상품정보를 입력하세요" name="productDetail"></textarea>
+			
+			<button type="submit">등록</button>
+		</form>
+	</div>
 </body>
 </html>
