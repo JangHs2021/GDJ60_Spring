@@ -6,8 +6,11 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.iu.home.util.DBConnection;
 
+@Repository
 public class ProductDAO {
 	
 	// getMax
@@ -28,6 +31,31 @@ public class ProductDAO {
 		DBConnection.disConnection(rs, st, connection);
 		
 		return num;
+	}
+	
+	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception {
+		Connection connection = DBConnection.getConnection();
+		
+		String sql = "SELECT * FROM PRODUCT WHERE PRODUCTNUM = ?";
+		
+		PreparedStatement st = connection.prepareStatement(sql);
+		
+		st.setLong(1, productDTO.getProductNum());
+		
+		ResultSet rs = st.executeQuery();
+		
+		if(rs.next()) {
+			productDTO.setProductNum(rs.getLong("PRODUCTNUM"));
+			productDTO.setProductName(rs.getString("PRODUCTNAME"));
+			productDTO.setProductDetail(rs.getString("PRODUCTDETAIL"));
+			productDTO.setProductJumsu(rs.getDouble("PRODUCTJUMSU"));
+		} else {
+			productDTO = null;
+		}
+		
+		DBConnection.disConnection(rs, st, connection);
+		
+		return productDTO;
 	}
 	
 	// -----------------------------------------------------------------------------------

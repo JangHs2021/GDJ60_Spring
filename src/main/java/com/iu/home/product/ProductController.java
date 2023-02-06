@@ -14,7 +14,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value = "/list")
+	@RequestMapping(value = "list")
 	public ModelAndView getProductList(ModelAndView mv) throws Exception {
 		List<ProductDTO> ar = productService.getProductList();
 		
@@ -22,5 +22,15 @@ public class ProductController {
 		mv.addObject("list", ar);
 		
 		return mv;
+	}
+	
+	@RequestMapping(value = "detail")
+	public ModelAndView getProductDetail(ProductDTO productDTO, ModelAndView mv) throws Exception {
+		 productDTO = productService.getProductDetail(productDTO);
+		 
+		 mv.setViewName("/product/productDetail");
+		 mv.addObject("detail", productDTO);
+		 
+		 return mv;
 	}
 }

@@ -10,11 +10,10 @@
 <body>
 	<h3>Product List</h3>
 	
+	
 	<c:forEach items="${list}" var="dto">
 		<h3>${dto.productName}</h3>	
-	
 	</c:forEach>
-	
 	
 	
 </body>
