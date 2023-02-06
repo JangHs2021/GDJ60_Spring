@@ -11,6 +11,10 @@ public class ProductService {
 	@Autowired
 	private ProductDAO productDAO;
 	
+	public void setProductDelete (Long productNum) throws Exception {
+		int result = productDAO.setProductDelete(productNum);
+	}
+	
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception {
 		return productDAO.getProductDetail(productDTO);
 	}
