@@ -4,18 +4,22 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.iu.home.product.ProductDAO">
-		<select id="getProductList" resultType="com.iu.home.product.ProductDTO" statementType="PREPARED">
+		<select id="getProductList" resultType="ProductDTO" statementType="PREPARED">
 			SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTJUMSU
 			FROM PRODUCT
 			ORDER BY PRODUCTNUM DESC
 		</select>
 		
-		<select id="getProductDetail" parameterType="com.iu.home.product.ProductDTO" resultType="com.iu.home.product.ProductDTO">
+		<select id="getProductDetail" parameterType="ProductDTO" resultType="ProductDTO">
 			SELECT * FROM PRODUCT WHERE PRODUCTNUM = #{productNum}
 		</select>
 		
-		<insert id="setAddProduct" parameterType="com.iu.home.product.ProductDTO">
+		<insert id="setAddProduct" parameterType="ProductDTO">
 			INSERT INTO PRODUCT (PRODUCTNUM, PRODUCTNAME, PRODUCTDETAIL, PRODUCTJUMSU)
 			VALUES (#{productNum}, #{productName}, #{productDetail}, 0.0)
 		</insert>
+		
+		<delete id="setProductDelete" parameterType="Long">
+			DELETE PRODUCT WHERE PRODUCTNUM = #{productNum}
+		</delete>
 	</mapper>	
