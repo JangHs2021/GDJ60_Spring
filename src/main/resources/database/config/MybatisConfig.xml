@@ -8,6 +8,8 @@
 			<typeAlias type="com.iu.home.product.ProductDTO" alias="ProductDTO"/>
 			
 			<typeAlias type="java.lang.Long" alias="Long"/>	
+			
+			<typeAlias type="com.iu.home.member.MemberDTO" alias="MemberDTO"/>
 		</typeAliases>
 	</configuration>
 

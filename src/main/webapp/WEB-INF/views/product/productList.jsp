@@ -12,13 +12,6 @@
 </head>
 <body>
 	<h1>Product List</h1>
-	
-	<% List<ProductDTO> ar = (List<ProductDTO>)request.getAttribute("list");
-	   for(ProductDTO productDTO : ar){
-	%>
-	<h3><%= productDTO.getProductName()%></h3>
-	<h3><%= productDTO.getProductJumsu()%></h3>
-	<%} %>
 	<hr>
 	
 	<div class="col-6">

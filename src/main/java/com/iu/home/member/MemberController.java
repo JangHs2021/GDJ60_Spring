@@ -1,5 +1,8 @@
 package com.iu.home.member;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,12 +18,12 @@ public class MemberController {
 	@RequestMapping(value = "memberJoin")
 	public String memberJoin() throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId("ID5");
-		memberDTO.setPw("PW5");
-		memberDTO.setName("NAME5");
+		memberDTO.setId("ID6");
+		memberDTO.setPw("PW6");
+		memberDTO.setName("NAME6");
 		memberDTO.setPhone("0105635");
 		memberDTO.setEmail("@naver");
-		memberDTO.setAddress("ADDRESS5");
+		memberDTO.setAddress("ADDRESS6");
 		
 		int result = memberService.memberJoin(memberDTO);
 		
@@ -43,6 +46,17 @@ public class MemberController {
 		System.out.println("내 정보");
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("member/memberPage");
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "memberList")
+	public ModelAndView memberList(ModelAndView mv) {
+		List<MemberDTO> ar = new ArrayList<MemberDTO>();
+		ar = memberService.memberList();
+		
+		mv.addObject("list", ar);
+		mv.setViewName("member/memberList");
 		
 		return mv;
 	}

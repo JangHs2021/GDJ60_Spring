@@ -2,7 +2,10 @@ package com.iu.home.member;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.home.util.DBConnection;
@@ -10,25 +13,24 @@ import com.iu.home.util.DBConnection;
 @Repository
 public class MemberDAO {
 	
+	@Autowired
+	private SqlSession sqlSession;
+	private final String NAMESPACE = "com.iu.home.member.MemberDAO.";
+	
 	public int memberJoin(MemberDTO memberDTO) throws Exception {
-		Connection connection = DBConnection.getConnection();
 		
-		String sql = "INSERT INTO MEMBER2 (ID, PW, NAME, PHONE, EMAIL, ADDRESS) "
-				+ "VALUES(?, ?, ?, ?, ?, ?)";
+		return sqlSession.insert(NAMESPACE + "memberJoin", memberDTO);
+	}
+	
+	public List<MemberDTO> memberList() {
 		
-		PreparedStatement st = connection.prepareStatement(sql);
+		return sqlSession.selectList(NAMESPACE + "memberList");
+	}
+	
+	public void memberPage() {
 		
-		st.setString(1, memberDTO.getId());
-		st.setString(2, memberDTO.getPw());
-		st.setString(3, memberDTO.getName());
-		st.setString(4, memberDTO.getPhone());
-		st.setString(5, memberDTO.getEmail());
-		st.setString(6, memberDTO.getAddress());
-		
-		int result = st.executeUpdate();
-		
-		DBConnection.disConnection(st, connection);
-		
-		return result;
 	}
 }
+
+
+
