@@ -17,18 +17,14 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.home.member.MemberDAO.";
 	
-	public int memberJoin(MemberDTO memberDTO) throws Exception {
+	public int setMemberAdd(MemberDTO memberDTO) throws Exception {
 		
-		return sqlSession.insert(NAMESPACE + "memberJoin", memberDTO);
+		return sqlSession.insert(NAMESPACE + "setMemberAdd", memberDTO);
 	}
 	
 	public List<MemberDTO> memberList() {
 		
 		return sqlSession.selectList(NAMESPACE + "memberList");
-	}
-	
-	public void memberPage() {
-		
 	}
 }
 

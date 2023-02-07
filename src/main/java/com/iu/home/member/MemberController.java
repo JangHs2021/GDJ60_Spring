@@ -15,23 +15,10 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 
-	@RequestMapping(value = "memberJoin")
-	public String memberJoin() throws Exception {
-		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setId("ID6");
-		memberDTO.setPw("PW6");
-		memberDTO.setName("NAME6");
-		memberDTO.setPhone("0105635");
-		memberDTO.setEmail("@naver");
-		memberDTO.setAddress("ADDRESS6");
+	@RequestMapping(value = "setMemberAdd")
+	public String setMemberAdd(MemberDTO memberDTO) throws Exception {
 		
-		int result = memberService.memberJoin(memberDTO);
-		
-		if(result == 1) {
-			System.out.println("성공");
-		} else {
-			System.out.println("실패");
-		}
+		int result = memberService.setMemberAdd(memberDTO);
 		
 		return "member/memberJoin";
 	}

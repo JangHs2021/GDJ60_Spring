@@ -9,7 +9,7 @@
 <body>
 	<h1>Join Page</h1>
 	
-	<form action="./memberJoin" method="post">
+	<form action="./setMemberAdd" method="post">
 		ID <br>
 		<input type="text" placeholder="아이디를 입력하세요" name="id"> <br>
 		PW <br>
