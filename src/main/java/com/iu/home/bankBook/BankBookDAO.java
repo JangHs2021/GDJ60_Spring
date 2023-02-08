@@ -12,7 +12,7 @@ public class BankBookDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.iu.home.BankBookDAO.";
+	private final String NAMESPACE = "com.iu.home.bankBook.BankBookDAO.";
 	
 	public List<BankBookDTO> getBankBookList() throws Exception {
 		return sqlSession.selectList(NAMESPACE + "getBankBookList");

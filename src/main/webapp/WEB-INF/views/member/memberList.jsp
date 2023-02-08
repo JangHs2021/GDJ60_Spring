@@ -11,9 +11,25 @@
 <body>
 	<h3>Member List</h3>
 	
-	<c:forEach items="${list}" var="dto">
-		<h3>${pageScope.dto.name}</h3>
-	</c:forEach>
+	<table>
+		<thead>
+			<tr>
+				<th>회원명</th>
+				<th>전화번호</th>
+				<th>이메일</th>
+				<th>주소</th>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${list}" var="dto">
+				<tr>
+				<td>${pageScope.dto.name}</td>
+				
+			</c:forEach>
+			</tr>
+		</tbody>
+	</table>
 	
+	<a href="/">홈으로</a>
 </body>
 </html>
