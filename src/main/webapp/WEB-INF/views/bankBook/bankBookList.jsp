@@ -6,17 +6,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+<link rel="stylesheet" href="/resources/css/table.css">
 </head>
 <body>
-	<h1>BankBookList Page</h1>
+	<h1 class="title">BankBookList Page</h1>
 	
+	<div class="image">
 	<img alt="윈터이미지1" src="../resources/images/winter.jpg">
-	
-	<iframe width="560" height="315" src="https://www.youtube.com/embed/X7nTyBHI2Pw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-	
+	</div>
+
 	<hr>
-		<table class="table table-hover">
+		<table class="tbl" border="1">
 			<thead>
 				<tr>
 					<th>상품명</th>

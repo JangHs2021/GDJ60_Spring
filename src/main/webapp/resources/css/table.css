@@ -1,0 +1,15 @@
+.tbl {
+    width: 70%;
+    margin: 0px auto;
+}
+
+.title {
+    width: 30%;
+    margin: 0 auto;
+}
+
+/* div 태그 안에 감싸야함 */
+.image {
+    width: 50%;
+    margin: 0 auto;
+}
