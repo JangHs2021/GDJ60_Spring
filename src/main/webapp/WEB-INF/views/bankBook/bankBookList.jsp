@@ -10,6 +10,11 @@
 </head>
 <body>
 	<h1>BankBookList Page</h1>
+	
+	<img alt="윈터이미지1" src="../resources/images/winter.jpg">
+	
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/X7nTyBHI2Pw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+	
 	<hr>
 		<table class="table table-hover">
 			<thead>
