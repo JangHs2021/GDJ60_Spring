@@ -5,22 +5,34 @@
 <head>
 	<title>Home</title>
 	<link rel="stylesheet" href="./resources/css/main.css">
+	<link rel="stylesheet" href="/resources/css/reset.css">
 </head>
 <body>
-<h1>
-	Hello world!  
-</h1>
-<a class="a" href="product/list?num=1&num=2&num=3">ProductList</a>
-<a class="a" href="/product/list">ProductList</a>
-<a class="a" href="/member/memberList">MemberList</a>
-<a class="a" href="/member/setMemberAdd">MemberJoin</a>
-<a class="a" href="/bankBook/list">BankBookList</a>
-
-<img alt="윈터이미지1" src="resources/images/winter.jpg">
-<img alt="윈터이미지2" src="./resources/images/winter2.jpg">
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/X7nTyBHI2Pw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-<P>  The time on the server is ${serverTime}. </P>
+	<header>
+		<div class="header_wrap">
+			<div class="header_logo">
+				<img src="/resources/images/logo.png" alt="">
+			</div>
+			<nav class="header_nav">
+				<ul>
+					<li><a href="#">공지사항</a></li>
+					<li><a href="#">제품</a></li>
+					<li><a href="#">저축상품</a></li>
+					<li><a href="#">기타메뉴</a></li>
+				</ul>
+			</nav>
+			<div class="header_sub">
+				<ul>
+					<li><a href="#">LOGIN</a></li>
+					<li><a href="#">JOIN</a></li>
+					<li>|</li>
+					<li><a href="#">KO</a></li>
+					<li><a href="#">EN</a></li>
+					<li><a href="#">JP</a></li>
+					<li><a href="#">CN</a></li>
+				</ul>
+			</div>
+		</div>
+	</header>
 </body>
 </html>

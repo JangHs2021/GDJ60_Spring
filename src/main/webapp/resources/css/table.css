@@ -1,6 +1,24 @@
 .tbl {
     width: 70%;
     margin: 0px auto;
+    border: 1px solid black;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.tbl th, .tbl td {
+    border: 1px solid black;
+    height: 40px;
+}
+
+.tbl > thead > tr {
+    color: white;
+    background-color: black;
+}
+
+.tbl > tbody td > a {
+    color: black;
+    text-decoration: none;
 }
 
 .title {
@@ -13,3 +31,51 @@
     width: 50%;
     margin: 0 auto;
 }
+
+.tbl > tbody .tbl_td {
+    width: 15%;
+    text-align: center;
+}
+
+/* ---------------------------------- */
+.tbl2 {
+    width: 70%;
+    margin: 0px auto;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.tbl2 .tbl_td {
+    height: 35px;
+    text-align: center;
+    border-bottom: 3px black solid;
+    border-right: 3px white solid;
+}
+
+.tbl2 th {
+    height: 35px;
+    background-color: black;
+    color: white;
+    border-right: 3px solid white;
+}
+
+/* .tbl2 > tbody .tbl_td {
+    text-align: center;
+    border-bottom: 3px black solid;
+    border-right: 3px solid white;
+} */
+
+.tbl2 > tbody .tbl_td > a {
+    color: black;
+    text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
