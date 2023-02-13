@@ -8,9 +8,12 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../template/common_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/table.css">
 </head>
 <body>
+	<c:import url="../template/header.jsp"></c:import>
+
 	<h1 class="title">Product List</h1>
 	<hr>
 		<table class="tbl" border="1">
@@ -20,16 +23,13 @@
 					<th>평점</th>
 				</tr>
 			</thead>
-			
 			<tbody>
-			
 				<c:forEach items="${list}" var="dto"> <!-- dto는 page영역에 담김 -->
 					<tr>
 						<td><a href="detail?productNum=${dto.productNum}">${pageScope.dto.productName}</a></td>
 						<td>${dto.productJumsu}</td>
 					</tr>
 				</c:forEach>
-				
 			</tbody>
 		</table>
 		
