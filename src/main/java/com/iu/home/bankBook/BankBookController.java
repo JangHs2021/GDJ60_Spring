@@ -46,7 +46,7 @@ public class BankBookController {
 	
 	@RequestMapping(value = "bankBookAdd", method = RequestMethod.POST)
 	public ModelAndView setBankBookAdd(ModelAndView mv, BankBookDTO bankBookDTO) throws Exception {
-		//int result = bankBookService.setBankBookAdd(bankBookDTO);
+		int result = bankBookService.setBankBookAdd(bankBookDTO);
 		
 		mv.setViewName("redirect:./list");
 		
