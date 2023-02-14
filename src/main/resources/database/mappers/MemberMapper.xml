@@ -13,8 +13,18 @@
   		SELECT ID, NAME FROM MEMBER
   	</select>
   	
-  	<insert id="" parameterType="MemberDTO">
+  	<insert id="setMemberRoleAdd" parameterType="MemberDTO">
   		INSERT INTO MEMBER_ROLE (ID, ROLENUM)
   		VALUES (#{id}, (SELECT ROLENUM FROM ROLE WHERE ROLENAME = 'MEMBER'))
   	</insert>
+  	
+  	<select id="getMemberLogin" parameterType="MemberDTO" resultType="MemberDTO">
+  		SELECT * FROM MEMBER WHERE ID = #{id} AND PW = #{pw}
+  	</select>
+  	
+  	<update id="setMemberUpdate" parameterType="MemberDTO">
+  		UPDATE MEMBER SET NAME = #{name}, PHONE = #{phone}, EMAIL = #{email}
+		WHERE ID = #{id}
+  	</update>
+  	
   </mapper>

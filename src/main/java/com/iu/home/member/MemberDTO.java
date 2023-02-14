@@ -9,7 +9,7 @@ public class MemberDTO {
 	private String phone;
 	private String email;
 	private String address;
-	private List<RoleDTO> roleDTOs;
+	private RoleDTO roleDTO;
 	
 	public String getId() {
 		return id;
@@ -47,10 +47,10 @@ public class MemberDTO {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public List<RoleDTO> getRoleDTOs() {
-		return roleDTOs;
+	public RoleDTO getRoleDTO() {
+		return roleDTO;
 	}
-	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
-		this.roleDTOs = roleDTOs;
+	public void setRoleDTO(RoleDTO roleDTO) {
+		this.roleDTO = roleDTO;
 	}
 }

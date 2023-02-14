@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
+<title>로그인</title>
 <c:import url="../template/common_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/join.css">
 </head>
@@ -20,9 +20,9 @@
 	        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
 	          <div class="card" style="border-radius: 15px;">
 	            <div class="card-body p-5">
-	              <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+	              <h2 class="text-uppercase text-center mb-5">LOGIN</h2>
 	
-	              <form action="./setMemberAdd" method="post">
+	              <form action="./getMemberLogin" method="post">
 	                <div class="form-outline mb-4">
 	                  <input type="text" name="id" id="id" class="form-control form-control-lg" />
 	                  <label class="form-label" for="id">ID</label>
@@ -33,29 +33,9 @@
 	                  <label class="form-label" for="pw">PASSWORD</label>
 	                </div>
 					
-					<div class="form-outline mb-4">
-	                  <input type="text" name="name" id="name" class="form-control form-control-lg" />
-	                  <label class="form-label" for="name">NAME</label>
-	                </div>
-					
-					<div class="form-outline mb-4">
-	                  <input type="text" name="phone" id="phone" class="form-control form-control-lg" />
-	                  <label class="form-label" for="phone">PHONE</label>
-	                </div>
-					
-	                <div class="form-outline mb-4">
-	                  <input type="email" name="email" id="email" class="form-control form-control-lg" />
-	                  <label class="form-label" for="email">Email</label>
-	                </div>
-	
-	               <div class="form-outline mb-4">
-	                  <input type="text" name="address" id="address" class="form-control form-control-lg" />
-	                  <label class="form-label" for="address">ADDRESS</label>
-	                </div>
-	
 	                <div class="d-flex justify-content-center">
 	                  <button type="submit"
-	                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">SIGN UP</button>
+	                    class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">SIGN IN</button>
 	                </div>
 	              </form>
 	            </div>
@@ -65,7 +45,7 @@
 	    </div>
 	  </div>
 	</section>
-
+	
 	<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

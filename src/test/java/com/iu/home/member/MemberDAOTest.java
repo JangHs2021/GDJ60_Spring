@@ -13,17 +13,16 @@ public class MemberDAOTest extends MyTestCase {
 	private MemberDAO memberDAO;
 	
 	@Test
-	public void setMemberAddTest() throws Exception {
+	public void setMemberUpdate() throws Exception {
 		MemberDTO memberDTO = new MemberDTO();
 		
-		memberDTO.setId("2");
-		memberDTO.setPw("22222");
-		memberDTO.setName("HS222");
-		memberDTO.setPhone("010-222-222");
-		memberDTO.setEmail("2222@naver");
-		memberDTO.setAddress("가산동");
+		memberDTO.setName("222");
+		memberDTO.setPhone("222");
+		memberDTO.setEmail("222");
+		memberDTO.setAddress("222");
+		memberDTO.setId("11");
 		
-		int result = memberDAO.setMemberAdd(memberDTO);
+		int result = memberDAO.setMemberUpdate(memberDTO);
 		
 		assertEquals(1, result);
 	}
