@@ -13,6 +13,8 @@
 			
 			<typeAlias type="com.iu.home.bankBook.BankBookDTO" alias="BankBookDTO"/>
 			
+			<typeAlias type="com.iu.home.member.RoleDTO" alias="RoleDTO"/>
+			
 		</typeAliases>
 	</configuration>
 
