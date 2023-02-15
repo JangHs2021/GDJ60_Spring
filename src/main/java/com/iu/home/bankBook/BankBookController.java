@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.iu.home.util.Pager;
+
 @Controller
 @RequestMapping(value = "/bankBook/*")
 public class BankBookController {
@@ -18,10 +20,11 @@ public class BankBookController {
 	private BankBookService bankBookService;
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public ModelAndView getBankBookList(ModelAndView mv) throws Exception {
-		List<BankBookDTO> ar = bankBookService.getBankBookList();
+	public ModelAndView getBankBookList(ModelAndView mv, Pager pager) throws Exception {
+		List<BankBookDTO> ar = bankBookService.getBankBookList(pager);
 		
 		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		mv.setViewName("bankBook/bankBookList");
 		
 		return mv;
@@ -53,13 +56,6 @@ public class BankBookController {
 		return mv;
 	}
 	
-//	@RequestMapping(value = "bankBookAdd", method = RequestMethod.POST)
-//	public String setBankBookAdd(BankBookDTO bankBookDTO) throws Exception {
-//		int result = bankBookService.setBankBookAdd(bankBookDTO);
-//		
-//		return "redirect:/list";
-//	}
-	
 	@RequestMapping(value = "bankBookDelete", method = RequestMethod.GET)
 	public ModelAndView setBankBookDelete(ModelAndView mv, BankBookDTO bankBookDTO) throws Exception {
 		int result = bankBookService.setBankBookDelete(bankBookDTO);
@@ -69,7 +65,6 @@ public class BankBookController {
 		return mv;
 	}
 	
-	// 수정 폼 이동
 	@RequestMapping(value = "bankBookUpdate", method = RequestMethod.GET)
 	public ModelAndView setBankBookUpdate(ModelAndView mv, BankBookDTO bankBookDTO) throws Exception {
 		bankBookDTO = bankBookService.getBankBookDetail(bankBookDTO);

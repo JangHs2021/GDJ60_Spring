@@ -22,15 +22,15 @@
 				
 				<fieldset>
 				<legend>Name</legend> 
-				<input type="text" value="${member.name}" name="name"> <br>
+				<input type="text" value="${dto.name}" name="name"> <br>
 				</fieldset>
 				<fieldset>
 				<legend>EMAIL</legend> 
-				<input type="text" value="${member.email}" name="email"> <br>
+				<input type="text" value="${dto.email}" name="email"> <br>
 				</fieldset>
 				<fieldset>
 				<legend>PHONE</legend> 
-				<input type="text" value="${member.phone}" name="phone"> <br>
+				<input type="text" value="${dto.phone}" name="phone"> <br>
 				</fieldset>
 				<fieldset>
 				
