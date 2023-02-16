@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.iu.home.util.DBConnection;
+import com.iu.home.util.Pager;
 
 @Repository
 public class ProductDAO {
@@ -20,6 +21,11 @@ public class ProductDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.iu.home.product.ProductDAO.";
+	
+	public List<ProductDTO> getProductList(Pager pager) throws Exception {
+		
+		return sqlSession.selectList(NAMESPACE + "getProductList", pager);
+	}
 	
 	public int setProductDelete(Long productNum) throws Exception {
 
@@ -36,15 +42,15 @@ public class ProductDAO {
 		return sqlSession.selectOne(NAMESPACE + "getProductDetail", productDTO);
 	}
 	
-	public List<ProductDTO> getProductList() throws Exception {
-		
-		return sqlSession.selectList(NAMESPACE + "getProductList");
-	}
-	
 	public int setProductAdd(ProductDTO productDTO) throws Exception {
 		
 		return sqlSession.insert(NAMESPACE + "setProductAdd", productDTO);
 	}
+	
+	public Long getProductCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE + "getProductCount", pager);
+	}
+	
 	
 	public int setAddProductOption(ProductOptionDTO productOptionDTO) throws Exception {
 		Connection connection = DBConnection.getConnection();

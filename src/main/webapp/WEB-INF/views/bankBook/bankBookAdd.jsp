@@ -32,6 +32,11 @@
     				<label for="bookRate" class="form-label">이자율</label>
     				<input type="text" class="form-control" name="bookRate" id="bookRate" placeholder="이자율을 입력하세요">
   				</div>
+  				
+  				<div class="col-md-12 mt-5">
+    				<label for="files" class="form-label">Image</label>
+    				<input type="file" class="form-control" name="pic" id="files">
+  				</div>
 			
 				<div class="mb-3">
 					<label class="form-label mt-5">판매여부</label>

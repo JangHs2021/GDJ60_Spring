@@ -4,14 +4,43 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.iu.home.product.ProductDAO">
-		<select id="getProductNum" resultType="Long">
-			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
+		<select id="getProductCount" resultType="Long">
+			SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+			
+			<if test="kind == 'contents'">
+				WHERE PRODUCTDETAIL LIKE '%' || #{search} || '%'
+			</if>
+			<if test="kind == 'title'">
+				WHERE PRODUCTNAME LIKE '%' || #{search} || '%'
+			</if> 
+			
 		</select>
 		
-		<select id="getProductList" resultType="ProductDTO" statementType="PREPARED">
-			SELECT PRODUCTNUM, PRODUCTNAME, PRODUCTJUMSU
-			FROM PRODUCT
-			ORDER BY PRODUCTNUM DESC
+		<select id="getProductList" parameterType="Pager" resultType="ProductDTO">
+			SELECT * FROM 
+			(
+			SELECT ROWNUM R, B.* FROM
+				(
+					SELECT * FROM PRODUCT
+					WHERE 
+					<choose>
+						<when test="kind == 'contents'">
+							PRODUCTDETAIL 
+						</when>		
+						<otherwise>
+							PRODUCTNAME
+						</otherwise>
+					</choose>
+					LIKE '%' || #{search} || '%'
+					ORDER BY PRODUCTNUM DESC
+				) B
+			)
+			WHERE R BETWEEN #{startRow} AND #{lastRow}
+		</select>
+		
+	
+		<select id="getProductNum" resultType="Long">
+			SELECT PRODUCT_SEQ.NEXTVAL FROM DUAL
 		</select>
 		
 		<select id="getProductDetail" parameterType="ProductDTO" resultType="ProductDTO">
