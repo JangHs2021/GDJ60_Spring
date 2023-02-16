@@ -17,7 +17,7 @@
 		</div>
 	
 		<div class="row col-md-7 mx-auto">
-			<form class="row g-3" action="./bankBookAdd" method="post">
+			<form class="row g-3" action="./bankBookAdd" method="post" enctype="multipart/form-data">
 				<div class="col-md-6">
     				<label for="bookName" class="form-label">상품명</label>
     				<input type="text" name="bookName" class="form-control" id="bookName" placeholder="상품명을 입력하세요">

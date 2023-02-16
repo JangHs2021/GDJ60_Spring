@@ -17,6 +17,8 @@
 			
 			<typeAlias type="com.iu.home.util.Pager" alias="Pager"/>
 			
+			<typeAlias type="com.iu.home.bankBook.BankBookImgDTO" alias="BankBookImgDTO"/>
+			
 		</typeAliases>
 	</configuration>
 

@@ -39,4 +39,8 @@ public class BankBookDAO {
 	public Long getBankBookCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE + "getBankBookCount", pager);
 	}
+	
+	public int setBankBookImgAdd(BankBookImgDTO bankBookImgDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE + "setBankBookImgAdd", bankBookImgDTO);
+	}
 }

@@ -2,12 +2,15 @@ package com.iu.home.bankBook;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpSession;
 import javax.swing.text.View;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.home.util.Pager;
@@ -48,8 +51,12 @@ public class BankBookController {
 	}
 	
 	@RequestMapping(value = "bankBookAdd", method = RequestMethod.POST)
-	public ModelAndView setBankBookAdd(ModelAndView mv, BankBookDTO bankBookDTO) throws Exception {
-		int result = bankBookService.setBankBookAdd(bankBookDTO);
+	public ModelAndView setBankBookAdd(ModelAndView mv, BankBookDTO bankBookDTO, MultipartFile pic, HttpSession session) throws Exception {
+		int result = bankBookService.setBankBookAdd(bankBookDTO, pic);
+		System.out.println("Name : " + pic.getName());
+		System.out.println("OriName : " + pic.getOriginalFilename());
+		System.out.println("Size : " + pic.getSize());
+		System.out.println(session.getServletContext());
 		
 		mv.setViewName("redirect:./list");
 		
