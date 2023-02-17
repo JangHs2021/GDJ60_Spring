@@ -2,7 +2,7 @@ package com.iu.home.bankBook;
 
 public class BankBookImgDTO {
 	private Long fileNum;
-	private Long bookNum;
+	private Long bookNumber;
 	private String fileName;
 	private String oriName;
 	
@@ -12,11 +12,11 @@ public class BankBookImgDTO {
 	public void setFileNum(Long fileNum) {
 		this.fileNum = fileNum;
 	}
-	public Long getBookNum() {
-		return bookNum;
+	public Long getBookNumber() {
+		return bookNumber;
 	}
-	public void setBookNum(Long bookNum) {
-		this.bookNum = bookNum;
+	public void setBookNumber(Long bookNumber) {
+		this.bookNumber = bookNumber;
 	}
 	public String getFileName() {
 		return fileName;
