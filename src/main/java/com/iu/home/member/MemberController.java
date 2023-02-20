@@ -114,4 +114,13 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	@RequestMapping(value = "setMemberAgree", method = RequestMethod.GET)
+	public ModelAndView setMemberAgree() throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("member/memberAgree");
+		
+		return mv;
+	}
 }
