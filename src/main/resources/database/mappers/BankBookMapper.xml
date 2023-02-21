@@ -4,7 +4,7 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 	<mapper namespace="com.iu.home.bankBook.BankBookDAO">
-	
+		
 		<sql id="searchCondition">
 			<if test="kind == 'contents'">
 				WHERE BOOKDETAIL LIKE '%' || #{search} || '%'
@@ -32,7 +32,7 @@
 			SELECT COUNT(BOOKNUMBER) FROM BANKBOOK
 			 
 			<include refid="searchCondition"></include>
-
+			
 		</select>
 		
 		<select id="getBankBookList" parameterType="Pager" resultType="BankBookDTO">
