@@ -8,6 +8,14 @@
 <title>회원가입</title>
 <c:import url="../template/common_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/join.css">
+<style>
+	.redResult {
+		color: red;
+	}
+	.blueResult {
+		color: blue;
+	}
+</style>
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
