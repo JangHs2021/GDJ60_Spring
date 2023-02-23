@@ -19,7 +19,7 @@ public class BankBookService {
 	
 	// testCase NullPoint
 	// API 추가
-	@Autowired
+	// @Autowired
 	private ServletContext servletContext;
 	
 	@Autowired

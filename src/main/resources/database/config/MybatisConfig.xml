@@ -19,6 +19,16 @@
 			
 			<typeAlias type="com.iu.home.bankBook.BankBookImgDTO" alias="BankBookImgDTO"/>
 			
+			<typeAlias type="com.iu.home.bankBook.BankBookCommentDTO" alias="BankBookCommentDTO"/>
+			
+			<typeAlias type="com.iu.home.board.BbsDTO" alias="BbsDTO"/>
+			
+			<typeAlias type="com.iu.home.board.BoardDTO" alias="BoardDTO"/>
+			
+			<typeAlias type="com.iu.home.board.notice.NoticeDTO" alias="NoticeDTO"/>
+			
+			<typeAlias type="com.iu.home.board.qna.QnaDTO" alias="QnaDTO"/>
+			
 		</typeAliases>
 	</configuration>
 

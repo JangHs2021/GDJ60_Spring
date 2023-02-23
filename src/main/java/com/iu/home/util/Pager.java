@@ -1,6 +1,7 @@
 package com.iu.home.util;
 
 public class Pager {
+	private Long bookNumber;
 	// 검색 종류 (사용할 column)
 	private String kind;
 	// 검색어
@@ -170,5 +171,13 @@ public class Pager {
 
 	public void setSearch(String search) {
 		this.search = search;
+	}
+
+	public Long getBookNumber() {
+		return bookNumber;
+	}
+
+	public void setBookNumber(Long bookNumber) {
+		this.bookNumber = bookNumber;
 	}
 }
