@@ -13,9 +13,22 @@ function setMax(m){
     max = m;
 }
 
+let idx = 0;
+
+fileList.addEventListener("click", function(e){
+
+    if(e.target.classList.contains('dels')) {
+        let id = e.target.getAttribute("data-delete-id");
+        document.getElementById(id).remove();
+        idx--
+        console.log("delete : ", id);
+    }
+});
+
+
 add.addEventListener("click", function(){
 
-    if(count >= max){
+    if(idx >= max){
         alert("첨부파일은 최대 " + max + "개 까지만 가능합니다")
         return;
     }
@@ -24,10 +37,13 @@ add.addEventListener("click", function(){
 
     // div
     let div = document.createElement('div');
-    let attr1 = document.createAttribute('class');
+    let attr = document.createAttribute('class');
+    let attr1 = document.createAttribute("id");
+    
+    attr.value = 'col-md-12 mt-5';
+    attr1.value = 'del' + idx;
 
-    attr1.value = 'col-md-12 mt-5';
-
+    div.setAttributeNode(attr);
     div.setAttributeNode(attr1);
 
     // label
@@ -51,7 +67,7 @@ add.addEventListener("click", function(){
 
     attr4.value = 'file';
     attr5.value = 'form-control';
-    attr6.value = param;
+    attr6.value = "files";
     attr7.value = 'files';
 
     input.setAttributeNode(attr4);
@@ -59,11 +75,29 @@ add.addEventListener("click", function(){
     input.setAttributeNode(attr6);
     input.setAttributeNode(attr7);
 
+    // button
+    let button = document.createElement('button');
+    let attr8 = document.createAttribute('type');
+    let attr9 = document.createAttribute("data-delete-id");
+    let attr10 = document.createAttribute("class");
+    let text2 = document.createTextNode('X');
+
+    attr8.value = 'button';
+    attr9.value = "del" + idx;
+    attr10.value = "dels";
+ 
+    button.setAttributeNode(attr8);
+    button.setAttributeNode(attr9);
+    button.setAttributeNode(attr10);
+    idx++;
+
     // 조립
     fileList.appendChild(div);
     div.appendChild(label);
     label.appendChild(text);
     div.appendChild(input);
+    button.appendChild(text2);
+    div.appendChild(button);
     
     fileList.prepend(div);
 

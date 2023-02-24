@@ -27,8 +27,7 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public int setBoardAdd(BbsDTO bbsDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		return noticeDAO.setBoardAdd(bbsDTO);
 	}
 
 	@Override
@@ -45,7 +44,6 @@ public class NoticeService implements BoardService {
 
 	@Override
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		return noticeDAO.getBoardDetail(boardDTO);
 	}
 }

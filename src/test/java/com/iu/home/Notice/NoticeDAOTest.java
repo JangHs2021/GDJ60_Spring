@@ -11,6 +11,7 @@ import com.iu.home.MyTestCase;
 import com.iu.home.board.BbsDTO;
 import com.iu.home.board.BoardDTO;
 import com.iu.home.board.notice.NoticeDAO;
+import com.iu.home.board.notice.NoticeDTO;
 import com.iu.home.util.Pager;
 
 import oracle.net.aso.c;
@@ -22,16 +23,14 @@ public class NoticeDAOTest extends MyTestCase {
 	
 	@Test
 	public void test() throws Exception {
-		Pager pager = new Pager();
-	
-		pager.setKind("writer");
-		pager.setSearch("t");
+		NoticeDTO noticeDTO = new NoticeDTO();
 		
+		noticeDTO.setTitle("HS");
+		noticeDTO.setWriter("HS");
+		noticeDTO.setContents("Contents");
 		
-		long count = noticeDAO.getTotalCount(pager);
-		//List<BbsDTO> ar = noticeDAO.getBoardList(pager);
+		int result = noticeDAO.setBoardAdd(noticeDTO);
 		
-		assertNotEquals(0, count);
+		assertEquals(1, result);
 	}
-
 }

@@ -3,6 +3,64 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-	<mapper namespace="sampleMapper">
-  	
+	<mapper namespace="com.iu.home.board.qna.QnaDAO">
+  		
+  		<sql id="qnaCondition">
+	  			
+	  		<if test="kind == 'title'">
+	  			WHERE TITLE LIKE '%' || #{search} || '%'
+	  		</if>
+	  			
+	  		<if test="kind == 'contents'">
+	  			WHERE CONTENTS LIKE '%' || #{search} || '%'
+	  		</if>
+	  			
+	  		<if test="kind == 'writer'">
+	  			WHERE WRITER LIKE '%' || #{search} || '%'
+	  		</if>
+	  		
+  		</sql>
+  		
+  		<select id="getTotalCount" resultType="Long" parameterType="Pager">
+  			SELECT COUNT(NUM) FROM QNA
+  			
+  			<include refid="qnaCondition"></include>
+  		</select>
+  		
+  		<select id="getBoardList" resultType="QnaDTO" parameterType="Pager">
+  			SELECT * FROM
+  			(
+	  			SELECT ROWNUM R, N.* FROM
+		  			(
+			  			SELECT NUM, TITLE, WRITER, REGDATE, HIT, DEPTH FROM QNA
+			  			<include refid="qnaCondition"></include>
+			  			ORDER BY REF DESC, STEP ASC
+		  			) N
+  			)
+  			WHERE R BETWEEN #{startRow} AND #{lastRow}
+  		</select>
+  		
+  		<select id="getBoardDetail" resultType="QnaDTO" parameterType="BoardDTO">
+  			SELECT * FROM QNA
+  			WHERE NUM = #{num}
+  		</select>
+  		
+  		<insert id="setBoardAdd" parameterType="BbsDTO">
+  			<selectKey keyProperty="num" resultType="Long" order="BEFORE">
+				SELECT QNA_SEQ.NEXTVAL FROM DUAL
+			</selectKey>
+  			INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT, REF, STEP, DEPTH)
+  			VALUES (#{num}, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{num}, 0, 0)
+  		</insert>
+  		
+  		<update id="setStepUpdate" parameterType="QnaDTO">
+  			UPDATE QNA SET STEP = STEP + 1 
+  			WHERE REF = #{ref} AND STEP > #{step}  
+  		</update>
+  		
+  		<insert id="setReplyAdd" parameterType="QnaDTO">
+  			INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT, REF, STEP, DEPTH)
+  			VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
+  		</insert>
+  		
   	</mapper>
