@@ -41,7 +41,7 @@
 						<button type="button">X</button>
 					</div>  -->
 					
-					<button class="col-md-12 mt-5" id="add" type="button">ADD</button>
+					<button class="col-md-12 mt-5 btn btn-primary" id="add" type="button">Img</button>
 				</div>
 				
 				<div class="row col-md-2 mx-auto mt-5">
@@ -53,7 +53,7 @@
 
 	<script src="../resources/js/fileManager.js"></script>
 	<script>
-		setMax(5)
+		setMax(5);
 	</script>
 	<c:import url="../template/common_js.jsp"></c:import>
 </body>

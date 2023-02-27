@@ -13,27 +13,22 @@ function setMax(m){
     max = m;
 }
 
-let idx = 0;
-
 fileList.addEventListener("click", function(e){
 
     if(e.target.classList.contains('dels')) {
-        let id = e.target.getAttribute("data-delete-id");
-        document.getElementById(id).remove();
-        idx--
-        console.log("delete : ", id);
+        e.target.parentNode.remove();
+        // let id = e.target.getAttribute("data-delete-id");
+        // document.getElementById(id).remove();
+        count--
     }
 });
 
-
 add.addEventListener("click", function(){
 
-    if(idx >= max){
+    if(count >= max){
         alert("첨부파일은 최대 " + max + "개 까지만 가능합니다")
         return;
     }
-
-    count++;
 
     // div
     let div = document.createElement('div');
@@ -41,22 +36,22 @@ add.addEventListener("click", function(){
     let attr1 = document.createAttribute("id");
     
     attr.value = 'col-md-12 mt-5';
-    attr1.value = 'del' + idx;
+    attr1.value = 'del' + count;
 
     div.setAttributeNode(attr);
     div.setAttributeNode(attr1);
 
     // label
-    let label = document.createElement('label');
-    let text = document.createTextNode('Image');
-    let attr2 = document.createAttribute('for');
-    let attr3 = document.createAttribute('class');
+    //let label = document.createElement('label');
+    //let text = document.createTextNode('Image');
+    //let attr2 = document.createAttribute('for');
+    //let attr3 = document.createAttribute('class');
 
-    attr2.value = 'files';
-    attr3.value = 'form-label';
+    //attr2.value = 'files';
+    //attr3.value = 'form-label';
 
-    label.setAttributeNode(attr2);
-    label.setAttributeNode(attr3);
+    //label.setAttributeNode(attr2);
+    //label.setAttributeNode(attr3);
     
     // input
     let input = document.createElement('input');
@@ -83,18 +78,18 @@ add.addEventListener("click", function(){
     let text2 = document.createTextNode('X');
 
     attr8.value = 'button';
-    attr9.value = "del" + idx;
-    attr10.value = "dels";
+    attr9.value = "del" + count;
+    attr10.value = "btn btn-outline-danger dels";
  
     button.setAttributeNode(attr8);
     button.setAttributeNode(attr9);
     button.setAttributeNode(attr10);
-    idx++;
+    count++;
 
     // 조립
     fileList.appendChild(div);
-    div.appendChild(label);
-    label.appendChild(text);
+    //div.appendChild(label);
+    //label.appendChild(text);
     div.appendChild(input);
     button.appendChild(text2);
     div.appendChild(button);

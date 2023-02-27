@@ -2,6 +2,8 @@ package com.iu.home.board.notice;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,7 @@ public class NoticeController {
 	
 	@ModelAttribute("boardName")
 	public String getBoardName() {
-		return "Notice";
+		return "notice";
 	}
 	
 	@RequestMapping(value = "list", method = RequestMethod.GET)
@@ -50,10 +52,10 @@ public class NoticeController {
 	}
 	
 	@PostMapping(value = "add")
-	public ModelAndView setBoardAdd(NoticeDTO noticeDTO, MultipartFile [] files) throws Exception {
+	public ModelAndView setBoardAdd(NoticeDTO noticeDTO, MultipartFile [] files, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
-		int result = noticeService.setBoardAdd(noticeDTO);
+		int result = noticeService.setBoardAdd(noticeDTO, files, session);
 		
 		String message = "등록 실패";
 		
@@ -76,6 +78,25 @@ public class NoticeController {
 		
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/detail");
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "delete")
+	public ModelAndView setBoardDelete(BbsDTO bbsDTO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = noticeService.setBoardDelete(bbsDTO, session);
+		
+		String message = "삭제 실패";
+		
+		if(result > 0) {
+			message = "삭제 성공";
+		}
+		
+		mv.addObject("result", message);
+		mv.addObject("url", "./list");
+		mv.setViewName("common/result");
 		
 		return mv;
 	}

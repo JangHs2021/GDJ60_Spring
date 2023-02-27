@@ -40,10 +40,31 @@
   			WHERE R BETWEEN #{startRow} AND #{lastRow}
   		</select>
   		
-  		<select id="getBoardDetail" resultType="QnaDTO" parameterType="BoardDTO">
-  			SELECT * FROM QNA
+  		<select id="getBoardDetail" resultMap="getBoardDetailResult" parameterType="BoardDTO">
+  			SELECT *
+			FROM QNA
+				LEFT OUTER JOIN
+				QNAFILES
+				USING(NUM)
   			WHERE NUM = #{num}
   		</select>
+  		
+  		<resultMap type="QnaDTO" id="getBoardDetailResult">
+  			<id column="NUM" property="num"/>
+  			<result column="TITLE" property="title"/>
+  			<result column="WRITER" property="writer"/>
+  			<result column="CONTENTS" property="contents"/>
+  			<result column="REGDATE" property="regDate"/>
+  			<result column="HIT" property="hit"/>
+  			<result column="DEPTH" property="depth"/>
+  			
+  			<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
+  				<id column="FILENUM" property="fileNum"/>
+  				<result column="FILENAME" property="fileName"/>
+  				<result column="ORINAME" property="oriName"/>
+  			</collection>
+  			
+  		</resultMap>
   		
   		<insert id="setBoardAdd" parameterType="BbsDTO">
   			<selectKey keyProperty="num" resultType="Long" order="BEFORE">
@@ -62,5 +83,18 @@
   			INSERT INTO QNA (NUM, TITLE, CONTENTS, WRITER, REGDATE, HIT, REF, STEP, DEPTH)
   			VALUES (QNA_SEQ.NEXTVAL, #{title}, #{contents}, #{writer}, SYSDATE, 0, #{ref}, #{step}, #{depth})
   		</insert>
+  		
+  		<insert id="setBoardFileAdd" parameterType="BoardFileDTO">
+  			INSERT INTO QNAFILES (FILENUM, NUM, FILENAME, ORINAME)
+  			VALUES (QNA_SEQ.NEXTVAL, #{num}, #{fileName}, #{oriName})
+  		</insert>
+  		
+  		<delete id="setBoardDelete" parameterType="BbsDTO">
+  			DELETE QNA WHERE NUM = #{num}
+  		</delete>
+  		
+  		<select id="getBoardFileList" resultType="BoardFileDTO" parameterType="BbsDTO">
+  			SELECT * FROM QNAFILES WHERE NUM = #{num}
+  		</select>
   		
   	</mapper>

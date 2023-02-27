@@ -29,6 +29,8 @@
 			
 			<typeAlias type="com.iu.home.board.qna.QnaDTO" alias="QnaDTO"/>
 			
+			<typeAlias type="com.iu.home.board.BoardFileDTO" alias="BoardFileDTO"/>
+			
 		</typeAliases>
 	</configuration>
 
