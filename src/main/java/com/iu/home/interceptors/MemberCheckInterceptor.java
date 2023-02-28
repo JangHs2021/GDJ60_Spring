@@ -20,8 +20,6 @@ public class MemberCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		// 로그인 된 사람은 true 안된사람 form으로 이동
 		
-				
-		
 		
 		
 		response.sendRedirect("");
