@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.iu.home.board.BbsDTO;
 import com.iu.home.board.BoardDTO;
+import com.iu.home.board.BoardFileDTO;
 import com.iu.home.util.Pager;
 
 @Controller
@@ -97,6 +98,18 @@ public class NoticeController {
 		mv.addObject("result", message);
 		mv.addObject("url", "./list");
 		mv.setViewName("common/result");
+		
+		return mv;
+	}
+	
+	@GetMapping(value = "fileDown")
+	public ModelAndView getBoardFileDetail(BoardFileDTO boardFileDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		boardFileDTO = noticeService.getBoardFileDetail(boardFileDTO);
+		
+		mv.addObject("boardFile", boardFileDTO);
+		mv.setViewName("fileDownView");
 		
 		return mv;
 	}
