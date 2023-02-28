@@ -34,14 +34,16 @@
 			<!-- 업테이트 클릭 하면 전송 submit
 			삭제 버튼을 클릭하면 form 이벤트를 submit, action이 delete로 바뀌면서 전송 
 			delete 메서드 post || update 메서드 get -->
-			<div>
-				<form action="./update" id="frm">
-					<input type="hidden" name="num" value="${dto.num}">
-					<button id="update" type="submit" class="btn btn-primary mt-4">UPDATE</button>
-					<button id="delete" type="button" class="btn btn-primary mt-4">DELETE</button>
-				</form>
-			</div>
 			
+				<div>
+					<form action="./update" id="frm">
+						<input type="hidden" name="num" value="${dto.num}">
+						<c:if test="${dto.writer == member.id}">
+							<button id="update" type="submit" class="btn btn-primary mt-4">UPDATE</button>
+							<button id="delete" type="button" class="btn btn-primary mt-4">DELETE</button>
+						</c:if>					
+					</form>
+				</div>
 		</div>
 	</div>
 
