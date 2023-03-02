@@ -19,6 +19,8 @@ import com.iu.home.board.BoardDTO;
 import com.iu.home.board.BoardFileDTO;
 import com.iu.home.util.Pager;
 
+import oracle.net.aso.b;
+
 @Controller
 @RequestMapping(value = "/notice/*")
 public class NoticeController {
@@ -110,6 +112,18 @@ public class NoticeController {
 		
 		mv.addObject("boardFile", boardFileDTO);
 		mv.setViewName("fileDownView");
+		
+		return mv;
+	}
+	
+	@GetMapping(value = "update")
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		boardDTO = noticeService.getBoardDetail(boardDTO);
+		
+		mv.addObject("dto", boardDTO);
+		mv.setViewName("board/update");;
 		
 		return mv;
 	}

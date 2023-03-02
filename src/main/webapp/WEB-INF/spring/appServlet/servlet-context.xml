@@ -29,8 +29,27 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/qna/*"/>
+			<mapping path="/member/*"/>
 			<exclude-mapping path="/qna/list"/>
+			<exclude-mapping path="/member/getMemberLogin"/>
+			<exclude-mapping path="/member/setMemberAdd"/>
+			<exclude-mapping path="/member/setMemberAgree"/>
 			<beans:ref bean="memberCheckInterceptor"/>					
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/notice/*"/>
+			<exclude-mapping path="/notice/list"/>
+			<exclude-mapping path="/notice/detail"/>
+			<beans:bean class="com.iu.home.interceptors.AdminCheckInterceptor"></beans:bean>					
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/qna/update"/>
+			<mapping path="/qna/delete"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			<beans:ref bean="ownerCheckInterceptor"/>					
 		</interceptor>
 	</interceptors>
 	
