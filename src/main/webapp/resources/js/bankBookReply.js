@@ -1,6 +1,8 @@
 const replyAdd = document.getElementById("replyAdd");
 const replyContents = document.getElementById("replyContents");
 const commentListResult = document.getElementById("commentListResult");
+const contentsConfirm = document.getElementById("contentsConfirm");
+const closeModal = document.getElementById("closeModal");
 // const pageLink = document.querySelectorAll(".page-link");
 
 replyAdd.addEventListener("click", function(){
@@ -16,11 +18,11 @@ replyAdd.addEventListener("click", function(){
         if(this.readyState == 4 && this.status == 200) {
             // console.log(this.responseText);
             if(this.responseText.trim() == 1) {
-                alert('댓글이 등록 되었습니다')
+                alert('댓글이 등록 되었습니다');
                 replyContents.value = '';
                 getList(1);
             } else {
-                alert('댓글 등록이 실패했습니다')
+                alert('댓글 등록이 실패했습니다');
             }
         }
     })
@@ -70,10 +72,10 @@ commentListResult.addEventListener("click", function(e){
         xhttp.addEventListener("readystatechange", function(){
             if(this.readyState == 4 && this.status == 200) {
                 if(this.responseText.trim() == 1) {
-                    alert('댓글이 삭제 되었습니다')
+                    alert('댓글이 삭제 되었습니다');
                     getList(1);
                 } else {
-                    alert('댓글 삭제가 실패했습니다')
+                    alert('댓글 삭제가 실패했습니다');
                 }
             }
         });
@@ -94,11 +96,11 @@ commentListResult.addEventListener("click", function(e){
 //         xhttp.addEventListener("readystatechange", function(){
 //             if(this.readyState == 4 && this.status == 200) {
 //                 if(this.responseText.trim() == 1) {
-//                     alert('댓글이 수정 되었습니다')
+//                     alert('댓글이 수정 되었습니다');
 //                     replyContents.value = '';
 //                     getList(1);
 //                 } else {
-//                     alert('댓글 수정을 실패했습니다')
+//                     alert('댓글 수정을 실패했습니다');
 //                 }
 //             }
 //         });
@@ -116,46 +118,84 @@ commentListResult.addEventListener("click", function(e){
 //     }
 // });
 
+// commentListResult.addEventListener("click", function(e){
+//     let update = e.target
+//     if(update.classList.contains("update")){
+//         let num = update.getAttribute("data-comment-update")
+
+//         let contents = document.getElementById("contents" + num);
+        
+//         contents.firstChild.removeAttribute("readonly");
+
+//         let btn = document.createElement("button");
+//         let attr = document.createAttribute("class");
+//         let text = document.createTextNode("확인");
+//         attr.value = 'btn btn-primary';
+        
+//         btn.setAttributeNode(attr);
+
+//         btn.appendChild(text);
+//         contents.appendChild(btn);
+
+//         btn.addEventListener("click", function(){
+           
+//             let xhttp = new XMLHttpRequest();
+
+//             xhttp.open("POST", "../bankBookComment/update");
+
+//             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+//             xhttp.send("num="+num+"&contents="+contents.firstChild.value);
+
+//             xhttp.addEventListener("readystatechange", function(){
+//                 if(this.readyState == 4 && this.status == 200) {
+//                     if(this.responseText.trim() == 1) {
+//                         alert('댓글이 수정 되었습니다');
+//                         getList(1);
+//                     } else {
+//                         alert('댓글 수정을 실패했습니다');
+//                     }
+//                 }
+//             });
+//         });
+//     }
+// });
+
 commentListResult.addEventListener("click", function(e){
     let update = e.target
     if(update.classList.contains("update")){
-        let num = update.getAttribute("data-comment-update")
+        let num = update.getAttribute("data-comment-update");
 
-        let contents = document.getElementById("contents" + num);
-        
-        contents.firstChild.removeAttribute("readonly");
+        let contents = document.getElementById("contents" + num); // td
+        let contentsTextArea = document.getElementById("contents"); // Modal textarea
+        contentsTextArea.value = contents.innerText;
 
-        let btn = document.createElement("button");
-        let attr = document.createAttribute("class");
-        let text = document.createTextNode("확인");
-        attr.value = 'btn btn-primary';
-        
-        btn.setAttributeNode(attr);
+        contentsConfirm.setAttribute("data-comment-update", num);
 
-        btn.appendChild(text);
-        contents.appendChild(btn);
-
-        btn.addEventListener("click", function(){
-           
-            let xhttp = new XMLHttpRequest();
-
-            xhttp.open("POST", "../bankBookComment/update");
-
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        
-            xhttp.send("num="+num+"&contents="+contents.firstChild.value);
-
-            xhttp.addEventListener("readystatechange", function(){
-                if(this.readyState == 4 && this.status == 200) {
-                    if(this.responseText.trim() == 1) {
-                        alert('댓글이 수정 되었습니다')
-                        getList(1);
-                    } else {
-                        alert('댓글 수정을 실패했습니다')
-                    }
-                }
-            });
-        });
     }
 });
 
+contentsConfirm.addEventListener("click", function(){
+    let updateContents = document.getElementById("contents").value;
+    let num = contentsConfirm.getAttribute("data-comment-update");
+
+    let xhttp = new XMLHttpRequest();
+
+    xhttp.open("POST", "../bankBookComment/update");
+
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhttp.send("num="+num+"&contents="+updateContents);
+
+    xhttp.addEventListener("readystatechange", function(){
+        if(this.readyState == 4 && this.status == 200) {
+            if(this.responseText.trim() == 1) {
+                alert('댓글이 수정 되었습니다');
+                closeModal.click();
+                getList(1);
+            } else {
+                alert('댓글 수정을 실패했습니다');
+            }
+        }
+    });    
+});
