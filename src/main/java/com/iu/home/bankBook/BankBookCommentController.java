@@ -50,4 +50,28 @@ public class BankBookCommentController {
 		
 		return mv;
 	}
+	
+	@PostMapping(value = "delete")
+	public ModelAndView setBoardDelete(BankBookCommentDTO bankBookCommentDTO, HttpSession session) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = bankBookCommentService.setBoardDelete(bankBookCommentDTO, null);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
+	
+	@PostMapping(value = "update")
+	public ModelAndView setBoardUpdate(BankBookCommentDTO bankBookCommentDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		
+		int result = bankBookCommentService.setBoardUpdate(bankBookCommentDTO);
+		
+		mv.addObject("result", result);
+		mv.setViewName("common/ajaxResult");
+		
+		return mv;
+	}
 }
