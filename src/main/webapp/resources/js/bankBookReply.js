@@ -1,17 +1,17 @@
-const replyAdd = document.getElementById("replyAdd");
-const replyContents = document.getElementById("replyContents");
-const commentListResult = document.getElementById("commentListResult");
-const contentsConfirm = document.getElementById("contentsConfirm");
-const closeModal = document.getElementById("closeModal");
+// const replyAdd = document.getElementById("replyAdd");
+// const replyContents = document.getElementById("replyContents");
+// const commentListResult = document.getElementById("commentListResult");
+// const contentsConfirm = document.getElementById("contentsConfirm");
+// const closeModal = document.getElementById("closeModal");
 // const pageLink = document.querySelectorAll(".page-link");
 
 // 댓글 등록
-replyAdd.addEventListener("click", function(){
 
+$("#replyAdd").click(() => {
     // JS에서 사용할 가상의 Form 태그 생성
     const form = new FormData(); // html에 <form></form> 생성
-    form.append("contents", replyContents.value); // <form><input type="text" name="contents" value=""></form>
-    form.append("bookNumber", replyAdd.getAttribute("data-book-bookNumber")); // <form><input type="text" name="contents" value=""> <input type="text" name="bookNumber" value=""></form>
+    form.append("contents", $("#replyContents").val()); // <form><input type="text" name="contents" value=""></form>
+    form.append("bookNumber", $("#replyAdd").attr("data-book-bookNumber"));
 
     fetch('../bankBookComment/add', {
         method : "POST",
@@ -21,12 +21,34 @@ replyAdd.addEventListener("click", function(){
     .then((res) => {
         if(res.trim() > 0) {
             alert('댓글이 등록 되었습니다');
-            replyContents.value = '';
+            $("#replyContents").val('');
             getList(1);
         } else {
             alert('댓글 등록이 실패했습니다');
         }
     });
+
+// replyAdd.addEventListener("click", function(){
+
+//     // JS에서 사용할 가상의 Form 태그 생성
+//     const form = new FormData(); // html에 <form></form> 생성
+//     form.append("contents", replyContents.value); // <form><input type="text" name="contents" value=""></form>
+//     form.append("bookNumber", replyAdd.getAttribute("data-book-bookNumber")); // <form><input type="text" name="contents" value=""> <input type="text" name="bookNumber" value=""></form>
+
+//     fetch('../bankBookComment/add', {
+//         method : "POST",
+//         // headers : {"Content-type" : "application/x-www-form-urlencoded"},
+//         body : form
+//     }).then((response) => response.text())
+//     .then((res) => {
+//         if(res.trim() > 0) {
+//             alert('댓글이 등록 되었습니다');
+//             replyContents.value = '';
+//             getList(1);
+//         } else {
+//             alert('댓글 등록이 실패했습니다');
+//         }
+//     });
 
     // let xhttp = new XMLHttpRequest();
 
@@ -60,7 +82,8 @@ function getList(page){
         method : "GET"
     }).then((response) => response.text())
     .then((res) => {
-        commentListResult.innerHTML = res.trim();
+        // commentListResult.innerHTML = res.trim();
+        $("#commentListResult").html(res.trim());
     });
 
     // let xhttp = new XMLHttpRequest();
@@ -80,35 +103,60 @@ function getList(page){
     // console.log("count : " , count);
 };
 
-commentListResult.addEventListener("click", function(e){
-    let pageLink = e.target
-    if(pageLink.classList.contains("page-link")){
-        let page = pageLink.getAttribute("data-board-page");
-        getList(page);
-    }
+$("#commentListResult").on("click", ".page-link", function() {
+    let page = $(this).attr("data-board-page");
+    getList(page);
 });
 
+// commentListResult.addEventListener("click", function(e){
+//     let pageLink = e.target
+//     if(pageLink.classList.contains("page-link")){
+//         let page = pageLink.getAttribute("data-board-page");
+//         getList(page);
+//     }
+// });
+
 // delete
-commentListResult.addEventListener("click", function(e){
-    let del = e.target
-    if(del.classList.contains("del")){
-        fetch("../bankBookComment/delete", {
-            method : "POST",
-            headers : {"Content-type" : "application/x-www-form-urlencoded"},
-            body : "num="+del.getAttribute("data-comment-num")
-            // 응답객체에서 Data 추출
-        }).then((response) => response.text())
-        // 추출한 Data 사용
-        .then((res) => {
-            if(res.trim() > 0) {
-                alert('댓글이 삭제 되었습니다');
-                getList(1);
-            } else {
-                alert('댓글 삭제가 실패했습니다');
-            }
-        }).catch(() => {
-            alert('삭제가 실패했습니다');
-        });
+$("#commentListResult").on("click", ".del", () => {
+    fetch("../bankBookComment/delete", {
+        method : "POST",
+        headers : {"Content-type" : "application/x-www-form-urlencoded"},
+        body : "num="+$(".del").attr("data-comment-num")
+        // 응답객체에서 Data 추출
+    }).then((response) => response.text())
+    // 추출한 Data 사용
+    .then((res) => {
+        if(res.trim() > 0) {
+            alert('댓글이 삭제 되었습니다');
+            getList(1);
+        } else {
+            alert('댓글 삭제가 실패했습니다');
+        }
+    }).catch(() => {
+        alert('삭제가 실패했습니다');
+    });
+});
+
+// commentListResult.addEventListener("click", function(e){
+//     let del = e.target
+//     if(del.classList.contains("del")){
+//         fetch("../bankBookComment/delete", {
+//             method : "POST",
+//             headers : {"Content-type" : "application/x-www-form-urlencoded"},
+//             body : "num="+del.getAttribute("data-comment-num")
+//             // 응답객체에서 Data 추출
+//         }).then((response) => response.text())
+//         // 추출한 Data 사용
+//         .then((res) => {
+//             if(res.trim() > 0) {
+//                 alert('댓글이 삭제 되었습니다');
+//                 getList(1);
+//             } else {
+//                 alert('댓글 삭제가 실패했습니다');
+//             }
+//         }).catch(() => {
+//             alert('삭제가 실패했습니다');
+//         });
 
 
         // let xhttp = new XMLHttpRequest();
@@ -129,8 +177,8 @@ commentListResult.addEventListener("click", function(e){
         //         }
         //     }
         // });
-    }
-});
+//     }
+// });
 
 // commentListResult.addEventListener("click", function(e){
 //     let update = e.target
@@ -211,33 +259,42 @@ commentListResult.addEventListener("click", function(e){
 //     }
 // });
 
-commentListResult.addEventListener("click", function(e){
-    let update = e.target
-    if(update.classList.contains("update")){
-        let num = update.getAttribute("data-comment-update");
+// update
+$("#commentListResult").on("click", ".update", function(e){
+    let num = $(this).attr("data-comment-update");
 
-        let contents = document.getElementById("contents" + num); // td
-        let contentsTextArea = document.getElementById("contents"); // Modal textarea
-        contentsTextArea.value = contents.innerText;
+    $("#contents").val($("#contents"+num).text());
 
-        contentsConfirm.setAttribute("data-comment-update", num);
+    $("#contentsConfirm").attr("data-comment-update", num);
 
-    }
+    e.preventDefault();
 });
 
-contentsConfirm.addEventListener("click", function(){
-    let updateContents = document.getElementById("contents").value;
-    let num = contentsConfirm.getAttribute("data-comment-update");
+// commentListResult.addEventListener("click", function(e){
+//     let update = e.target
+//     if(update.classList.contains("update")){
+//         let num = update.getAttribute("data-comment-update");
+
+//         let contents = document.getElementById("contents" + num); // td
+//         let contentsTextArea = document.getElementById("contents"); // Modal textarea
+//         contentsTextArea.value = contents.innerText;
+
+//         contentsConfirm.setAttribute("data-comment-update", num);
+
+//     }
+// });
+
+$("#contentsConfirm").click(function(){
 
     fetch("../bankBookComment/update", {
         method : "POST",
         headers : {"Content-type" : "application/x-www-form-urlencoded"},
-        body : "num="+num+"&contents="+updateContents
+        body : "num="+$(this).attr("data-comment-update")+"&contents="+$("#contents").val()
     }).then((response) => response.text())
     .then((res) => {
         if(res.trim() > 0) {
             alert('댓글이 수정 되었습니다');
-            closeModal.click();
+            $("#closeModal").click();
             getList(1);
         } else {
             alert('댓글 수정을 실패했습니다');
@@ -245,6 +302,28 @@ contentsConfirm.addEventListener("click", function(){
     }).catch(() => {
         alert('수정을 실패했습니다');
     });
+});
+
+// contentsConfirm.addEventListener("click", function(){
+//     let updateContents = document.getElementById("contents").value;
+//     let num = contentsConfirm.getAttribute("data-comment-update");
+
+//     fetch("../bankBookComment/update", {
+//         method : "POST",
+//         headers : {"Content-type" : "application/x-www-form-urlencoded"},
+//         body : "num="+num+"&contents="+updateContents
+//     }).then((response) => response.text())
+//     .then((res) => {
+//         if(res.trim() > 0) {
+//             alert('댓글이 수정 되었습니다');
+//             closeModal.click();
+//             getList(1);
+//         } else {
+//             alert('댓글 수정을 실패했습니다');
+//         }
+//     }).catch(() => {
+//         alert('수정을 실패했습니다');
+//     });
 
     // let xhttp = new XMLHttpRequest();
 
@@ -265,4 +344,49 @@ contentsConfirm.addEventListener("click", function(){
     //         }
     //     }
     // });    
-});
+// });
+
+// Test 후 삭제할 영역
+    // 1. 선택
+    // const b1 = document.getElementById("b1");
+    // const b1 = document.querySelector("#b1");
+    // Jquery
+    // $("#b1").click(() => {
+    //     let v = $("#t1").val();
+    //     console.log(v);
+    // });
+
+    // $("#t1").blur(() => {
+    //     console.log("blur")
+    // });
+
+    $("#t1").on({
+        click : function(){
+            console.log("t1 click")
+        },
+        blur : () => {
+            console.log("t1 blur");
+        }
+    })
+
+    $("#b1").on("click", () => {})
+
+    $("#commentListResult").on("click", ".update", () => {});
+
+    // $(".ch").click(function(e) {
+    //     console.log("E : ", e);
+    //     console.log(this.value);
+    //     console.log($(this).val());
+    // })
+
+    // 화살표 함수를 쓰면 this가 window 객체를 가르킴
+    $(".ch").click((e) => {
+        console.log("E : ", e);
+        console.log(e.target);
+        console.log($(e.target).val());
+    })
+
+// ------------------
+
+
+
