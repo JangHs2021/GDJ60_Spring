@@ -6,7 +6,6 @@
 // const pageLink = document.querySelectorAll(".page-link");
 
 // 댓글 등록
-
 $("#replyAdd").click(() => {
     // JS에서 사용할 가상의 Form 태그 생성
     const form = new FormData(); // html에 <form></form> 생성
@@ -117,6 +116,7 @@ $("#commentListResult").on("click", ".page-link", function() {
 // });
 
 // delete
+
 $("#commentListResult").on("click", ".del", () => {
     fetch("../bankBookComment/delete", {
         method : "POST",
@@ -260,6 +260,7 @@ $("#commentListResult").on("click", ".del", () => {
 // });
 
 // update
+
 $("#commentListResult").on("click", ".update", function(e){
     let num = $(this).attr("data-comment-update");
 
