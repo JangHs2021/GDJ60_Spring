@@ -73,8 +73,10 @@ public class QnaService implements BoardService {
 			throws Exception {
 		int result = qnaDAO.setBoardUpdate(bbsDTO);
 		
-		for(Long fileNum : fileNums) {
-			qnaDAO.setBoardFileDelete(fileNum);
+		if(fileNums != null) {
+			for(Long fileNum : fileNums) {
+				qnaDAO.setBoardFileDelete(fileNum);
+			}
 		}
 		
 		String realPath = session.getServletContext().getRealPath("resources/upload/qna");

@@ -1,6 +1,7 @@
 // const add = document.getElementById("add");
 // const fileList = document.getElementById("fileList");
 
+let idx = 0;
 let count = 0;
 let max = 1;
 
@@ -22,8 +23,10 @@ $(".deleteCheck").click(function() {
         } else {
             $(this).prop("checked", false);
         }   
-    } else if (count == 5 ) {
-        $("#del"+count).remove();
+    } else if (count == 5) {
+        idx--;
+        $("#del"+idx).remove();
+        return;
     } else {
         count++;
     }
@@ -130,12 +133,14 @@ $("#add").click(() => {
 
     count++;
 
-    let child = '<div class="col-md-12 mt-5" id="del'+count+'">';
+    let child = '<div class="col-md-12 mt-5" id="del'+idx+'">';
         child = child + '<input type="file" class="form-control" name="addfiles" id="addfiles">';
-        child = child + '<button type="button" class="btn btn-outline-danger dels" data-delete-id="del'+count+'">X</button>';
+        child = child + '<button type="button" class="btn btn-outline-danger dels" data-delete-id="del'+idx+'">X</button>';
         child = child + '</div>';
 
     $("#fileList").append(child);
+
+    idx++;
 
 });
 
