@@ -24,13 +24,18 @@
 	
 	              <form action="./getMemberLogin" method="post">
 	                <div class="form-outline mb-4">
-	                  <input type="text" name="id" id="id" class="form-control form-control-lg" />
+	                  <input type="text" name="id" value="${cookie.rememberId.value}" id="id" class="form-control form-control-lg" />
 	                  <label class="form-label" for="id">ID</label>
 	                </div>
 					
 					<div class="form-outline mb-4">
 	                  <input type="password" name="pw" id="pw" class="form-control form-control-lg" />
 	                  <label class="form-label" for="pw">PASSWORD</label>
+	                  
+	                </div>
+	                
+	                <div>
+	                	<input type="checkbox" name="remember" value="remember">
 	                </div>
 					
 	                <div class="d-flex justify-content-center">
